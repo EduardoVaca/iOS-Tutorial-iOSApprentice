@@ -15,13 +15,42 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uAM-gI-Lz6">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="pa6-DI-lDO"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jxD-6P-znv"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" placeholder="App name, song, artist" translatesAutoresizingMaskIntoConstraints="NO" id="PF3-Cz-KTi">
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="UTR-L0-mJV"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PF3-Cz-KTi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="0CU-HS-wx5"/>
+                            <constraint firstItem="PF3-Cz-KTi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1Kk-rj-K68"/>
+                            <constraint firstAttribute="trailing" secondItem="uAM-gI-Lz6" secondAttribute="trailing" id="3eN-4O-K9o"/>
+                            <constraint firstItem="uAM-gI-Lz6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Eox-e9-16V"/>
+                            <constraint firstItem="uAM-gI-Lz6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OG4-19-U7M"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uAM-gI-Lz6" secondAttribute="bottom" id="XYp-xH-pti"/>
+                            <constraint firstAttribute="trailing" secondItem="PF3-Cz-KTi" secondAttribute="trailing" id="fQo-L2-mHy"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="PF3-Cz-KTi" id="4oS-A5-EIo"/>
+                        <outlet property="tableView" destination="uAM-gI-Lz6" id="Y65-DC-iHS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.875" y="136.26760563380282"/>
         </scene>
     </scenes>
 </document>
