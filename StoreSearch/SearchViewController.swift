@@ -22,6 +22,7 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResult]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: URLSessionTask?
     
 
     override func viewDidLoad() {
@@ -190,6 +191,7 @@ extension SearchViewController: UISearchBarDelegate {
             // Hide keyboard
             searchBar.resignFirstResponder()
             
+            dataTask?.cancel()
             isLoading = true
             tableView.reloadData()
             
@@ -197,10 +199,10 @@ extension SearchViewController: UISearchBarDelegate {
             
             let url = itunesURL(searchText: searchBar.text!)
             let session = URLSession.shared
-            let dataTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
+            dataTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
                 print("On main thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
-                if let error = error {
-                    print("Failure: \(error)")
+                if let error = error as? NSError, error.code == -999 {
+                    return //Search was cancelled
                 } else if let httpResponse = response as? HTTPURLResponse,
                             httpResponse.statusCode == 200 {
                     if let data = data, let jsonDictionary = self.parse(json: data) {
@@ -225,7 +227,7 @@ extension SearchViewController: UISearchBarDelegate {
                     self.showNetworkError()
                 }
             })
-            dataTask.resume()
+            dataTask?.resume()
         }
     }
     
