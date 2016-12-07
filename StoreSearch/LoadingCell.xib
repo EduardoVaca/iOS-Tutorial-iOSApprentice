@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LoadingCell" id="ceH-3Z-NYt">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ceH-3Z-NYt" id="RGR-Ws-vwe">
+                <frame key="frameInset" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3a-LK-20z">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkh-jl-kOv">
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3cx-tL-D76"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3cx-tL-D76" firstAttribute="leading" secondItem="fkh-jl-kOv" secondAttribute="trailing" constant="8" id="Dzj-7P-niv"/>
+                            <constraint firstItem="fkh-jl-kOv" firstAttribute="leading" secondItem="v3a-LK-20z" secondAttribute="leading" constant="20" id="Fb2-5E-d3I"/>
+                            <constraint firstItem="fkh-jl-kOv" firstAttribute="top" secondItem="v3a-LK-20z" secondAttribute="top" constant="20" id="PUa-S2-nx8"/>
+                            <constraint firstAttribute="trailing" secondItem="3cx-tL-D76" secondAttribute="trailing" constant="20" id="Tn8-2q-AqV"/>
+                            <constraint firstAttribute="bottom" secondItem="fkh-jl-kOv" secondAttribute="bottom" constant="20" id="Xcm-nM-wfm"/>
+                            <constraint firstItem="3cx-tL-D76" firstAttribute="top" secondItem="v3a-LK-20z" secondAttribute="top" constant="21" id="bBI-ay-CIK"/>
+                            <constraint firstAttribute="bottom" secondItem="3cx-tL-D76" secondAttribute="bottom" constant="20" id="tCt-SJ-Py1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="v3a-LK-20z" firstAttribute="centerY" secondItem="RGR-Ws-vwe" secondAttribute="centerY" id="ak2-00-XPH"/>
+                    <constraint firstItem="v3a-LK-20z" firstAttribute="centerX" secondItem="RGR-Ws-vwe" secondAttribute="centerX" id="k5i-0q-N2H"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="-131" y="22"/>
+        </tableViewCell>
+    </objects>
+</document>
