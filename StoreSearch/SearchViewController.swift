@@ -16,6 +16,7 @@ class SearchViewController: UIViewController {
         static let loadingCell = "LoadingCell"
     }
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!    
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,7 +29,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.becomeFirstResponder()
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = 80
         
         // Load nib
@@ -45,9 +46,16 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func itunesURL(searchText: String) -> URL {
+    func itunesURL(searchText: String, category: Int) -> URL {
+        let entityName: String
+        switch category {
+        case 1: entityName = "musicTrack"
+        case 2: entityName = "software"
+        case 3: entityName = "ebook"
+        default: entityName = ""
+        }
         let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format: "https://itunes.apple.com/search?term=%@", escapedSearchText)
+        let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapedSearchText, entityName)
         let url = URL(string: urlString)
         return url!
     }
@@ -181,11 +189,16 @@ class SearchViewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func segmentedChanged(_ sender: UISegmentedControl) {
+        performSearch()
+    }
+    
 
 }
 
 extension SearchViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func performSearch() {
         if !searchBar.text!.isEmpty {
             hasSearched = true
             // Hide keyboard
@@ -197,7 +210,7 @@ extension SearchViewController: UISearchBarDelegate {
             
             searchResults = []
             
-            let url = itunesURL(searchText: searchBar.text!)
+            let url = itunesURL(searchText: searchBar.text!, category: segmentedControl.selectedSegmentIndex)
             let session = URLSession.shared
             dataTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
                 print("On main thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
@@ -231,6 +244,10 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        performSearch()
+    }
+    
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
@@ -262,32 +279,13 @@ extension SearchViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             
             let searchResult = searchResults[indexPath.row]
-            cell.nameLabel.text = searchResult.name
-            if searchResult.artistName.isEmpty {
-                cell.artistNameLabel.text = "Unknown"
-            } else {
-                cell.artistNameLabel.text = String(format: "%@ (%@)", searchResult.artistName, kindForDisplay(searchResult.kind))
-            }
+            cell.configure(for: searchResult)
             
             return cell
         }
     }
     
-    func kindForDisplay(_ kind: String) -> String {
-        switch kind {
-        case "album": return "Album"
-        case "audiobook": return "Audio Book"
-        case "book": return "Book"
-        case "ebook": return "E-Book"
-        case "feature-movie": return "Movie"
-        case "music-video": return "Music Video"
-        case "podcast": return "Podcast"
-        case "software": return "App"
-        case "song": return "Song"
-        case "tv-episode": return "TV Episode"
-        default: return kind
-        }
-    }
+    
 }
 
 extension SearchViewController: UITableViewDelegate {
