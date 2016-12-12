@@ -145,17 +145,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loV-fC-kSM">
-                                        <frame key="frameInset" minX="168" minY="212" width="68" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loV-fC-kSM">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="NqJ-Ul-agV"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                         <state key="normal" title="$9.99" backgroundImage="PriceButton"/>
+                                        <connections>
+                                            <action selector="openInStore" destination="wsp-Um-bCk" eventType="touchUpInside" id="ITS-S9-PpD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.94817529965753422" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="7Yl-9q-vDK"/>
+                                    <constraint firstAttribute="trailing" secondItem="loV-fC-kSM" secondAttribute="trailing" constant="6" id="FR0-Ge-NBb"/>
                                     <constraint firstAttribute="width" constant="240" id="Ols-bj-gg9"/>
+                                    <constraint firstAttribute="bottom" secondItem="loV-fC-kSM" secondAttribute="bottom" constant="6" id="d6l-Co-3NK"/>
                                 </constraints>
                             </view>
                         </subviews>
