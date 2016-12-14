@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4823C8A11DF8690E004D5323 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4823C8A01DF8690E004D5323 /* LoadingCell.xib */; };
+		483DEF7C1E01A6B100E284B9 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483DEF7B1E01A6B100E284B9 /* LandscapeViewController.swift */; };
 		484CC79C1E003CA800A984CA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC79B1E003CA800A984CA /* GradientView.swift */; };
 		488A31791DFF056A00E663A3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A31781DFF056A00E663A3 /* DetailViewController.swift */; };
 		488A317B1DFF090700E663A3 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A317A1DFF090700E663A3 /* DimmingPresentationController.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		4823C8A01DF8690E004D5323 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		483DEF7B1E01A6B100E284B9 /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		484CC79B1E003CA800A984CA /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		488A31781DFF056A00E663A3 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		488A317A1DFF090700E663A3 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				484CC79B1E003CA800A984CA /* GradientView.swift */,
 				488BC0191E00455700CCE894 /* BounceAnimationController.swift */,
 				488BC01B1E004E5200CCE894 /* SlideOutAnimationController.swift */,
+				483DEF7B1E01A6B100E284B9 /* LandscapeViewController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				48A1288B1DFEFBA800C28EA4 /* UIImageView+DownloadedImage.swift in Sources */,
 				48BF40E11DF5A6A1007B596F /* SearchResult.swift in Sources */,
 				488BC01A1E00455700CCE894 /* BounceAnimationController.swift in Sources */,
+				483DEF7C1E01A6B100E284B9 /* LandscapeViewController.swift in Sources */,
 				488A31791DFF056A00E663A3 /* DetailViewController.swift in Sources */,
 				48BF40E51DF5B251007B596F /* SearchResultCell.swift in Sources */,
 				484CC79C1E003CA800A984CA /* GradientView.swift in Sources */,

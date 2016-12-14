@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
     var hasSearched = false
     var isLoading = false
     var dataTask: URLSessionTask?
+    var landscapeViewController: LandscapeViewController? // there will only be one if Lanscape
     
 
     override func viewDidLoad() {
@@ -192,6 +193,56 @@ class SearchViewController: UIViewController {
     
     @IBAction func segmentedChanged(_ sender: UISegmentedControl) {
         performSearch()
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        switch newCollection.verticalSizeClass {
+        case .compact:
+            showLandscape(with: coordinator)
+        case .regular, .unspecified:
+            hideLandscape(with: coordinator)
+        }
+    }
+    
+    func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        guard landscapeViewController == nil else {
+            return
+        }
+        
+        landscapeViewController = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
+        
+        if let controller = landscapeViewController {
+            controller.view.frame = view.bounds
+            controller.view.alpha = 0
+            
+            view.addSubview(controller.view)
+            addChildViewController(controller)
+            
+            coordinator.animate(alongsideTransition: { (_) in
+                    controller.view.alpha = 1
+                }, completion: { (_) in
+                    controller.didMove(toParentViewController: self)
+            })
+        }
+    }
+    
+    func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        if let controller = landscapeViewController {
+            // controller leaves the vc hierarchy by not having parent
+            controller.willMove(toParentViewController: nil)
+            
+            coordinator.animate(alongsideTransition: { (_) in
+                    controller.view.alpha = 0
+                }, completion: { (_) in
+                    // remove controller's view from screen
+                    controller.view.removeFromSuperview()
+                    // truly dispose the controller
+                    controller.removeFromParentViewController()
+                    self.landscapeViewController = nil
+            })
+        }
     }
     
 
