@@ -222,6 +222,11 @@ class SearchViewController: UIViewController {
             
             coordinator.animate(alongsideTransition: { (_) in
                     controller.view.alpha = 1
+                    self.searchBar.resignFirstResponder()
+                    // Dismiss the popup while rotating
+                    if self.presentedViewController != nil { // returns reference to a modal vc if any
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }, completion: { (_) in
                     controller.didMove(toParentViewController: self)
             })
