@@ -50,12 +50,36 @@ class LandscapeViewController: UIViewController {
             firstTime = false
             
             switch search.state {
-            case .loading, .noResults, .notSearchYet:
+            case .noResults, .notSearchYet:
                 break
+            case .loading:
+                showSpinner()
             case .results(let list):
-                tileButtons(list)        
+                tileButtons(list)
             }
         }
+    }
+    
+    private func showSpinner() {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        spinner.center = CGPoint(x: scrollView.bounds.midX + 0.5,
+                                 y: scrollView.bounds.midY + 0.5)
+        spinner.tag = 1000
+        view.addSubview(spinner)
+        spinner.startAnimating()
+    }
+    
+    func searchResultsReceived() {
+        hideSpinner()
+        switch search.state {
+        case .notSearchYet, .loading, .noResults:
+            break
+        case .results(let list):
+            tileButtons(list)
+        }
+    }
+    private func hideSpinner() {
+        view.viewWithTag(1000)?.removeFromSuperview()
     }
     
     private func tileButtons(_ searchResults: [SearchResult]) {
