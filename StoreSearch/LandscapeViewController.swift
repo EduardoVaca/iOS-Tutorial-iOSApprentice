@@ -153,6 +153,8 @@ class LandscapeViewController: UIViewController {
                                   y: marginY + CGFloat(row) * itemHeight + paddingVert,
                                   width: buttonWidth,
                                   height: buttonHeight)
+            button.tag = 2000 + index
+            button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
             
             scrollView.addSubview(button)
             downloadImage(for: searchResult, andPlaceOn: button)
@@ -201,6 +203,20 @@ class LandscapeViewController: UIViewController {
             }
             downloadTask.resume()
             downloadTasks.append(downloadTask)
+        }
+    }
+    
+    func buttonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "ShowDetail", sender: sender)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            if case .results(let list) = search.state {
+                let detailViewController = segue.destination as! DetailViewController
+                let searchResult = list[(sender as! UIButton).tag - 2000]
+                detailViewController.searchResult = searchResult
+            }
         }
     }
     

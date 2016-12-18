@@ -108,6 +108,9 @@ class SearchViewController: UIViewController {
             
             coordinator.animate(alongsideTransition: { (_) in
                     controller.view.alpha = 0
+                    if self.presentedViewController != nil {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }, completion: { (_) in
                     // remove controller's view from screen
                     controller.view.removeFromSuperview()
@@ -162,10 +165,10 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        print("ROWS: \(tableView.numberOfRows(inSection: 0))")
         switch search.state {
         case .notSearchYet:
-            fatalError("Should never get here")
+            fatalError("Should never get here") // Bug from tutorial if search is with cache
         case .loading:
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.loadingCell,
                                                      for: indexPath)
