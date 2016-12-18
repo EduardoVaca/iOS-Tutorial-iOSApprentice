@@ -11,19 +11,40 @@ import Foundation
 typealias SearchComplete = (Bool) -> Void
 
 class Search {
-    var searchResults = [SearchResult]()
-    var hasSearched = false
-    var isLoading = false
+    
+    enum Category: Int {
+        case all = 0
+        case music = 1
+        case software = 2
+        case ebook = 3
+        
+        // Swift enums cannot have instance variables, only computed properties.
+        var entityName: String {
+            switch self {
+            case .all: return ""
+            case .music: return "musicTrack"
+            case .software: return "software"
+            case .ebook: return "ebook"
+            }
+        }
+    }
+    
+    enum State {
+        case notSearchYet
+        case loading
+        case noResults
+        case results([SearchResult])
+    }
+    
+    private(set) var state: State = .notSearchYet   // private(set) means only the class can change value
     
     private var dataTask: URLSessionDataTask? = nil
     
-    func performSearch(for text: String, category: Int, completion: @escaping SearchComplete) {
+    func performSearch(for text: String, category: Category, completion: @escaping SearchComplete) {
         if !text.isEmpty {
             dataTask?.cancel()
             
-            hasSearched = true
-            isLoading = true
-            searchResults = []
+            state = .loading
             
             let url = itunesURL(searchText: text, category: category)
             
@@ -32,24 +53,25 @@ class Search {
                 print("On main thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
                 
                 var success = false
+                self.state = .notSearchYet
                 
                 if let error = error as? NSError, error.code == -999 {
                     return //Search was cancelled
-                } else if let httpResponse = response as? HTTPURLResponse,
-                    httpResponse.statusCode == 200 {
-                    if let data = data, let jsonDictionary = self.parse(json: data) {
-                        self.searchResults = self.parse(dictionary: jsonDictionary)
-                        self.searchResults.sort(by: <)
+                }
+                if let httpResponse = response as? HTTPURLResponse,
+                    httpResponse.statusCode == 200,
+                    let data = data,
+                    let jsonDictionary = self.parse(json: data) {
                         
-                        self.isLoading = false
-                        success = true
+                    var searchResults = self.parse(dictionary: jsonDictionary)
+                    if searchResults.isEmpty {
+                        self.state = .noResults
+                    } else {
+                        searchResults.sort(by: <)
+                        self.state = .results(searchResults)
                     }
-                }
-                
-                if !success {
-                    self.hasSearched = false
-                    self.isLoading = false
-                }
+                    success = true
+                }                
                 
                 DispatchQueue.main.async {
                     completion(success)
@@ -59,14 +81,8 @@ class Search {
         }
     }
     
-    private func itunesURL(searchText: String, category: Int) -> URL {
-        let entityName: String
-        switch category {
-        case 1: entityName = "musicTrack"
-        case 2: entityName = "software"
-        case 3: entityName = "ebook"
-        default: entityName = ""
-        }
+    private func itunesURL(searchText: String, category: Category) -> URL {
+        let entityName = category.entityName
         let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapedSearchText, entityName)
         let url = URL(string: urlString)
