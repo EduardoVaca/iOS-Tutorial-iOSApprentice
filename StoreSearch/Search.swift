@@ -6,7 +6,7 @@
 //  Copyright © 2016 Vaca. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 typealias SearchComplete = (Bool) -> Void
 
@@ -43,7 +43,7 @@ class Search {
     func performSearch(for text: String, category: Category, completion: @escaping SearchComplete) {
         if !text.isEmpty {
             dataTask?.cancel()
-            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true // Show little spinner on status bar
             state = .loading
             
             let url = itunesURL(searchText: text, category: category)
@@ -74,6 +74,7 @@ class Search {
                 }                
                 
                 DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     completion(success)
                 }
             })
