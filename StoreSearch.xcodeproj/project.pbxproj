@@ -24,7 +24,7 @@
 		48BF40E11DF5A6A1007B596F /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF40E01DF5A6A1007B596F /* SearchResult.swift */; };
 		48BF40E31DF5AEB8007B596F /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48BF40E21DF5AEB8007B596F /* SearchResultCell.xib */; };
 		48BF40E51DF5B251007B596F /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BF40E41DF5B251007B596F /* SearchResultCell.swift */; };
-		48BF40E71DF5B5AD007B596F /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48BF40E61DF5B5AD007B596F /* NothingFoundCell.xib */; };
+		48FD85491E1FD8E400F65FA1 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FD854B1E1FD8E400F65FA1 /* NothingFoundCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +47,8 @@
 		48BF40E01DF5A6A1007B596F /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		48BF40E21DF5AEB8007B596F /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		48BF40E41DF5B251007B596F /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
-		48BF40E61DF5B5AD007B596F /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		48FD854A1E1FD8E400F65FA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
+		48FD854C1E1FD95100F65FA1 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +89,7 @@
 				48BF40E01DF5A6A1007B596F /* SearchResult.swift */,
 				48BF40E21DF5AEB8007B596F /* SearchResultCell.xib */,
 				48BF40E41DF5B251007B596F /* SearchResultCell.swift */,
-				48BF40E61DF5B5AD007B596F /* NothingFoundCell.xib */,
+				48FD854B1E1FD8E400F65FA1 /* NothingFoundCell.xib */,
 				4823C8A01DF8690E004D5323 /* LoadingCell.xib */,
 				48A1288A1DFEFBA800C28EA4 /* UIImageView+DownloadedImage.swift */,
 				488A31781DFF056A00E663A3 /* DetailViewController.swift */,
@@ -146,6 +147,7 @@
 			knownRegions = (
 				en,
 				Base,
+				nl,
 			);
 			mainGroup = 488DBC941DF59C3400F6239D;
 			productRefGroup = 488DBC9E1DF59C3400F6239D /* Products */;
@@ -165,7 +167,7 @@
 				488DBCA81DF59C3400F6239D /* Assets.xcassets in Resources */,
 				4823C8A11DF8690E004D5323 /* LoadingCell.xib in Resources */,
 				48BF40E31DF5AEB8007B596F /* SearchResultCell.xib in Resources */,
-				48BF40E71DF5B5AD007B596F /* NothingFoundCell.xib in Resources */,
+				48FD85491E1FD8E400F65FA1 /* NothingFoundCell.xib in Resources */,
 				488DBCA61DF59C3400F6239D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +206,15 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		48FD854B1E1FD8E400F65FA1 /* NothingFoundCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48FD854A1E1FD8E400F65FA1 /* en */,
+				48FD854C1E1FD95100F65FA1 /* nl */,
+			);
+			name = NothingFoundCell.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -211,6 +222,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -260,6 +272,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
