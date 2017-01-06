@@ -6,7 +6,20 @@
 //  Copyright © 2016 Vaca. All rights reserved.
 //
 
+import Foundation
 
+private let displayNamesForKind = [
+"album": NSLocalizedString("Album", comment: "Localized kind: Album"),
+"audiobook": NSLocalizedString("Audio Book", comment: "Localized kind: Audio Book"),
+"book": NSLocalizedString("Book", comment: "Localized kind: Book"),
+"ebook": NSLocalizedString("E-Book", comment: "Localized kind: E-Book"),
+"feature-mpvie": NSLocalizedString("Movie", comment: "Localized kind: Feature movie"),
+"music-video": NSLocalizedString("Music Video", comment: "Localized kind: Music Video"),
+"podcast": NSLocalizedString("Podcast",comment: "Localized kind: Podcast"),
+"software": NSLocalizedString("App", comment: "Localized kind: Software"),
+"song": NSLocalizedString("Song", comment: "Localized kind: Song"),
+"tv-episode": NSLocalizedString("TV Episode", comment: "Localized kind: TV Episode"),
+]
 
 class SearchResult {
     var name = ""
@@ -20,19 +33,7 @@ class SearchResult {
     var genre = ""
     
     func kindForDisplay() -> String {
-        switch kind {
-        case "album": return "Album"
-        case "audiobook": return "Audio Book"
-        case "book": return "Book"
-        case "ebook": return "E-Book"
-        case "feature-movie": return "Movie"
-        case "music-video": return "Music Video"
-        case "podcast": return "Podcast"
-        case "software": return "App"
-        case "song": return "Song"
-        case "tv-episode": return "TV Episode"
-        default: return kind
-        }
+       return displayNamesForKind[kind] ?? kind
     }
 }
 

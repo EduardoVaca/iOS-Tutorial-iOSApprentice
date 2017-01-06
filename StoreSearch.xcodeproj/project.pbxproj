@@ -25,6 +25,7 @@
 		48FD85491E1FD8E400F65FA1 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FD854B1E1FD8E400F65FA1 /* NothingFoundCell.xib */; };
 		48FD854D1E1FDB3100F65FA1 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FD854F1E1FDB3100F65FA1 /* LoadingCell.xib */; };
 		48FD85541E1FDD7C00F65FA1 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FD85561E1FDD7C00F65FA1 /* SearchResultCell.xib */; };
+		48FD85591E1FE13A00F65FA1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48FD85571E1FE13A00F65FA1 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		48FD85511E1FDB4A00F65FA1 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LoadingCell.strings; sourceTree = "<group>"; };
 		48FD85531E1FDC8100F65FA1 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		48FD85551E1FDD7C00F65FA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchResultCell.xib; sourceTree = "<group>"; };
+		48FD85581E1FE13A00F65FA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		48FD855A1E1FE1EC00F65FA1 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,7 @@
 		488DBC9F1DF59C3400F6239D /* StoreSearch */ = {
 			isa = PBXGroup;
 			children = (
+				48FD85571E1FE13A00F65FA1 /* Localizable.strings */,
 				488DBCA01DF59C3400F6239D /* AppDelegate.swift */,
 				488DBCA21DF59C3400F6239D /* SearchViewController.swift */,
 				488DBCA41DF59C3400F6239D /* Main.storyboard */,
@@ -167,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				488DBCA81DF59C3400F6239D /* Assets.xcassets in Resources */,
+				48FD85591E1FE13A00F65FA1 /* Localizable.strings in Resources */,
 				48FD854D1E1FDB3100F65FA1 /* LoadingCell.xib in Resources */,
 				48FD85541E1FDD7C00F65FA1 /* SearchResultCell.xib in Resources */,
 				48FD85491E1FD8E400F65FA1 /* NothingFoundCell.xib in Resources */,
@@ -233,6 +238,15 @@
 				48FD85551E1FDD7C00F65FA1 /* Base */,
 			);
 			name = SearchResultCell.xib;
+			sourceTree = "<group>";
+		};
+		48FD85571E1FE13A00F65FA1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48FD85581E1FE13A00F65FA1 /* en */,
+				48FD855A1E1FE1EC00F65FA1 /* nl */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
