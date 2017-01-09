@@ -23,9 +23,17 @@ class DetailViewController: UIViewController {
         case fade
     }
     
-    var searchResult: SearchResult!
+    var searchResult: SearchResult! {
+        didSet {
+            if isViewLoaded {
+                // isViewLoaded check ensures this property observer only gets used when on an iPad
+                updateUI()
+            }
+        }
+    }
     var downloadTask: URLSessionDownloadTask? // necessary to cancel download
     var dismissAnimationStyle = AnimationStyle.fade
+    var isPopUp = false
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,13 +45,23 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
         popupView.layer.cornerRadius = 10
-        view.backgroundColor = UIColor.clear
         
-        // Gesture recognizer to close view
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
-        gestureRecognizer.cancelsTouchesInView = false
-        gestureRecognizer.delegate = self
-        view.addGestureRecognizer(gestureRecognizer)
+        if isPopUp {
+            view.backgroundColor = UIColor.clear
+            // Gesture recognizer to close view
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
+            gestureRecognizer.cancelsTouchesInView = false
+            gestureRecognizer.delegate = self
+            view.addGestureRecognizer(gestureRecognizer)
+        } else {
+            view.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+            popupView.isHidden = true
+            if let displayName = Bundle.main.localizedInfoDictionary?["CFBundleDisplayName"] as? String {
+                title = displayName
+            }
+        }
+        
+        
         
         if searchResult != nil {
             updateUI()
@@ -89,6 +107,8 @@ class DetailViewController: UIViewController {
         if let largeURL = URL(string: searchResult.artworkLargeURL) {
             downloadTask = artworkImageView.loadImage(url: largeURL)
         }
+        
+        popupView.isHidden = false
         
     }
     
